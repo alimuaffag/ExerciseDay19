@@ -1,0 +1,51 @@
+Q1- 
+   "hey from message1"
+
+
+Q2-
+   "hey from message1" then will print "hey from message1" | As message number 1 is qualifier
+
+Q3-
+
+"hey from message1" 
+   "hey from message3" 
+   "hey from message2" 
+
+"hey from message3"
+   "hey from message2"
+   "hey from message1"
+
+As number2 is depend on Qualifier3.
+
+
+Q4-
+
+"hey from message1"
+   "hey from main controller"
+   "hey from message3"
+   "hey from message2"
+
+
+"hey from message3"
+   "hey from message2"
+   "hey from message1"
+   "hey from main controller"
+
+"hey from message1"
+   "hey from message3"
+"hey from main controller"
+   "hey from message2"
+
+"hey from message1"
+   "hey from message3"
+   "hey from message2"
+"hey from main controller"
+
+As message2 depend on qualifier3 and MainController depend in Qualifier1
+
+   
+
+   
+
+
+
