@@ -1,47 +1,118 @@
 Q1- 
+
+1- 
    "hey from message1"
 
+Reason:
+
+The method getMessage1() is annotated with @Bean, so Spring executes it during application startup and prints the message inside.
+
+//---------------------------------------------------------------------------------
 
 Q2-
-   "hey from message1" then will print "hey from message1" | As message number 1 is qualifier
+
+1- 
+   "hey from message1"
+   "hey from message2"
+
+Reason:
+
+message1 is independent
+message2 depends on message3 via @Qualifier("1")
+
+//---------------------------------------------------------------------------------
+
 
 Q3-
 
-"hey from message1" 
+1- 
+   "hey from message1" 
    "hey from message3" 
    "hey from message2" 
 
-"hey from message3"
+2- 
+   "hey from message3"
    "hey from message2"
    "hey from message1"
 
-As number2 is depend on Qualifier3.
+3-
+   "hey from message3"
+   "hey from message1"
+   "hey from message2"
+   
+
+Reason:
+message1 is independent
+message2 depends on message3 via @Qualifier("3")
+Spring guarantees dependency order, but non-dependent beans can be initialized in any order
+
+//---------------------------------------------------------------------------------
 
 
 Q4-
 
-"hey from message1"
+1- 
+   "hey from message1"
    "hey from main controller"
    "hey from message3"
    "hey from message2"
 
-
-"hey from message3"
+2-
+   "hey from message3"
    "hey from message2"
    "hey from message1"
    "hey from main controller"
 
-"hey from message1"
+3-
+   "hey from message1"
    "hey from message3"
-"hey from main controller"
+   "hey from main controller"
    "hey from message2"
 
-"hey from message1"
+4-
+   "hey from message1"
    "hey from message3"
    "hey from message2"
-"hey from main controller"
+   "hey from main controller"
 
-As message2 depend on qualifier3 and MainController depend in Qualifier1
+5- 
+    "hey from message3"
+    "hey from message1"
+    "hey from main controller"  
+    "hey from message2"
+
+6- 
+    "hey from message3"
+    "hey from message1"
+    "hey from message2"
+    "hey from main controller"  
+   
+Reason:
+
+MainController depends on message1 (likely injected via @Qualifier("1"))
+message2 depends on message3
+Spring respects dependency order first, the rest is flexible
+
+//---------------------------------------------------------------------------------
+
+
+
+Q5-
+
+1-
+   "hey from message3"
+   "hey from message2"
+   "hey from Main controller"
+   "hey from message1"
+
+Reason:
+
+message2 depends on message3
+MainController depends on message2
+message1 depends on MainController as the parameter is MainController
+
+
+
 
    
 
